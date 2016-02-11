@@ -38,6 +38,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'cart',
+    'orders',
+    'payment',
+    'sorl.thumbnail',
+    'alipay',
+    'paypal.standard.ipn',
+    'coupons',
+    'localflavor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -102,6 +111,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
@@ -109,3 +120,11 @@ TEMPLATE_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+PAYPAL_RECEIVER_EMAIL = "yourpaypalemail@example.com"
+PAYPAL_TEST = True
