@@ -128,3 +128,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 PAYPAL_RECEIVER_EMAIL = "yourpaypalemail@example.com"
 PAYPAL_TEST = True
+
+
+REDIS_HOST = '10.46.139.34'
+REDIS_PORT = 8379
+REDIS_DB = 1

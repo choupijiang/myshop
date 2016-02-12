@@ -9,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.template.loader import render_to_string
 from django.conf import settings
 import weasyprint
-
+from shop.recommender import Recommender
 
 # Create your views here.
 def order_create(request):
@@ -27,6 +27,8 @@ def order_create(request):
             cart.clear()
             order_created.delay(order.id)
             request.session['order_id'] = order.id
+            r = Recommender()
+            r.products_bought([ item['product'] for item in cart])
             return redirect(reverse('payment:process'))
             # return render(request, 'orders/order/created.html', {'order': order})
     else:
